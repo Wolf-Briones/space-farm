@@ -1,4 +1,4 @@
-import { trigger, state, style, transition, animate } from '@angular/animations';
+import { trigger, style, transition, animate } from '@angular/animations';
 
 export const slideInAnimation = trigger('slideIn', [
   transition(':enter', [
@@ -13,6 +13,7 @@ export const slideInAnimation = trigger('slideIn', [
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { interval, Subscription } from 'rxjs';
+import { CultivosComponent } from '../../shared/components/cultivos/cultivos.component';
 
 interface Resource {
   type: 'water' | 'energy' | 'biomass' | 'research';
@@ -51,7 +52,8 @@ interface FarmPlot {
 }
 @Component({
   selector: 'app-game',
-  imports: [ CommonModule],
+  imports: [ CommonModule, CultivosComponent
+  ],
   templateUrl: './game.component.html',
   styleUrl: './game.component.scss',
   animations: [slideInAnimation]
