@@ -45,9 +45,13 @@ Thumbs.db
 .firebase
 *-debug.log
 .runtimeconfig.json
-# Carpeta environment con configuraciones sensibles
+
+# Carpeta environment
 environment/
-firebase.config.ts
+
+# También puedes ser más específico
+environment/*
+environment/firebase.config.ts
 
 # Variables de entorno
 .env
