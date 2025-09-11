@@ -45,4 +45,11 @@ Thumbs.db
 .firebase
 *-debug.log
 .runtimeconfig.json
-/environment
+# Carpeta environment con configuraciones sensibles
+environment/
+firebase.config.ts
+
+# Variables de entorno
+.env
+.env.local
+.env.production
