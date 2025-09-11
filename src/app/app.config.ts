@@ -18,7 +18,8 @@ import {
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { getDatabase, provideDatabase } from '@angular/fire/database';
 import { getStorage, provideStorage } from '@angular/fire/storage';
-import { environment } from '../environment/firebase.config';
+import { environment } from '../environment/firebase.config'; 
+
 
 export const appConfig: ApplicationConfig = {
   providers: [
