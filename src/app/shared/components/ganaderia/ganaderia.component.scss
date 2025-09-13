@@ -1,0 +1,11 @@
+@import '../../styles/shared-styles.scss';
+/* ganaderia.component.scss */
+
+:host {
+    @extend .component-base;
+}
+
+/* Estilos específicos para riegos */
+.action-group h4 {
+    // color: #4fc3f7; // Azul para riegos, descomenta si quieres personalizar
+}

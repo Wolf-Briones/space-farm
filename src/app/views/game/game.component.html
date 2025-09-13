@@ -112,41 +112,9 @@
 
   <!-- Bottom Panel -->
   <div class="bottom-panel">
-    <app-cultivos></app-cultivos>
-    <div class="action-group">
-      <h4>💧 Riego</h4>
-      <div class="action-buttons">
-        <button class="action-btn" (click)="onActionClick('Riego Manual')">Riego Manual</button>
-        <button class="action-btn" (click)="onActionClick('Auto-Riego')">Auto-Riego</button>
-        <button class="action-btn" (click)="onActionClick('Drenaje')">Drenaje</button>
-        <button class="action-btn" (click)="onActionClick('Aspersores')">Aspersores</button>
-        <button class="action-btn" (click)="onActionClick('Goteo')">Goteo</button>
-        <button class="action-btn" (click)="onActionClick('Programar')">Programar</button>
-      </div>
-    </div>
-
-    <div class="action-group">
-      <h4>🐄 Ganadería</h4>
-      <div class="action-buttons">
-        <button class="action-btn" (click)="onActionClick('Alimentar')">Alimentar</button>
-        <button class="action-btn" (click)="onActionClick('Pastoreo')">Pastoreo</button>
-        <button class="action-btn" (click)="onActionClick('Salud')">Salud</button>
-        <button class="action-btn" (click)="onActionClick('Reproducción')">Reproducción</button>
-        <button class="action-btn" (click)="onActionClick('Ordeño')">Ordeño</button>
-        <button class="action-btn" (click)="onActionClick('Refugio')">Refugio</button>
-      </div>
-    </div>
-
-    <div class="action-group">
-      <h4>🔬 Investigación</h4>
-      <div class="action-buttons">
-        <button class="action-btn" (click)="onActionClick('Análisis Suelo')">Análisis Suelo</button>
-        <button class="action-btn" (click)="onActionClick('Predicción')">Predicción</button>
-        <button class="action-btn" (click)="onActionClick('Optimizar')">Optimizar</button>
-        <button class="action-btn" (click)="onActionClick('Sostenibilidad')">Sostenibilidad</button>
-        <button class="action-btn" (click)="onActionClick('Reportes')">Reportes</button>
-        <button class="action-btn" (click)="onActionClick('IA Agrícola')">IA Agrícola</button>
-      </div>
-    </div>
+    <app-cultivos (actionClicked)="onActionClick($event)"></app-cultivos>
+    <app-riegos (actionClicked)="onActionClick($event)"></app-riegos>
+    <app-ganaderia (actionClicked)="onActionClick($event)"></app-ganaderia>
+    <app-investigacion (actionClicked)="onActionClick($event)"></app-investigacion>
   </div>
 </div>

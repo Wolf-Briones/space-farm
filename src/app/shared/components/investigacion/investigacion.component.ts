@@ -1,16 +1,16 @@
-// cultivos.component.ts
 import { Component, Output, EventEmitter } from '@angular/core';
 
 @Component({
-  selector: 'app-cultivos',
-  templateUrl: './cultivos.component.html',
-  styleUrls: ['./cultivos.component.scss']
+  selector: 'app-investigacion',
+  imports: [],
+  templateUrl: './investigacion.component.html',
+  styleUrl: './investigacion.component.scss'
 })
-export class CultivosComponent {
-  
+export class InvestigacionComponent {
   @Output() actionClicked = new EventEmitter<string>();
 
   onActionClick(action: string): void {
     this.actionClicked.emit(action);
   }
 }
+

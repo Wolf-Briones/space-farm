@@ -14,6 +14,9 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { interval, Subscription } from 'rxjs';
 import { CultivosComponent } from '../../shared/components/cultivos/cultivos.component';
+import { RiegosComponent } from '../../shared/components/riegos/riegos.component';
+import { GanaderiaComponent } from '../../shared/components/ganaderia/ganaderia.component';
+import { InvestigacionComponent } from '../../shared/components/investigacion/investigacion.component';
 
 interface Resource {
   type: 'water' | 'energy' | 'biomass' | 'research';
@@ -52,7 +55,8 @@ interface FarmPlot {
 }
 @Component({
   selector: 'app-game',
-  imports: [ CommonModule, CultivosComponent
+  imports: [ CommonModule, CultivosComponent, RiegosComponent,
+     GanaderiaComponent, InvestigacionComponent
   ],
   templateUrl: './game.component.html',
   styleUrl: './game.component.scss',

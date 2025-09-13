@@ -1,13 +1,12 @@
-/* cultivos.component.scss */
 @import '../../styles/shared-styles.scss';
 
 :host {
     @extend .component-base;
 }
 
-/* Estilos específicos para cultivos si necesitas */
+/* Estilos específicos para investigación si necesitas */
 .action-group h4 {
     // Puedes sobrescribir estilos específicos aquí si necesitas
     // Por ejemplo, cambiar el color del título para este componente
-    //color: #1a0d03; // Verde para cultivos
+    // color: #ff9800; // Naranja para investigación
 }
