@@ -20,12 +20,18 @@ export interface WeatherData {
   pressure: number;
 }
 
-export interface CropInfo {
+export interface CropInfo { 
+    id: string;
   type: string;
   growth: number;
   health: string;
   daysToHarvest: number;
   estimatedYield: number;
+  ultimaActualizacion?: Date;
+  fechaEstimadaCosecha?: Date;
+  fechaPlantado?: Date;
+  diasParaCosecha?: number;
+  crecimiento?: number;
 }
 
 export interface FarmPlot {

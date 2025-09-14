@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-cultivos',
+  selector: 'app-riego',
   imports: [],
-  templateUrl: './cultivos.component.html',
-  styleUrl: './cultivos.component.scss'
+  templateUrl: './riego.component.html',
+  styleUrl: './riego.component.scss'
 })
-export class CultivosComponent {
+export class RiegoComponent {
   onActionClick(action: string) {
     console.log(`Acción seleccionada: ${action}`);
   }

@@ -1,19 +1,21 @@
 
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { interval, Subscription } from 'rxjs';
-import { CultivosComponent } from '../../shared/components/cultivos/cultivos.component';
 import { CropInfo, FarmPlot, Resource, SatelliteData, WeatherData } from '../../shared/interfaces/interfaces.test';
 import { slideInAnimation } from '../../shared/const/slide.animation';
 import { plotConfigurationsConst } from '../../shared/const/plot.configuration';
+import { BottomPanelComponent } from '../../shared/components/bottom-panel/bottom-panel.component';
+import { RightPanelComponent } from '../../shared/components/right-panel/right-panel.component';
 
 @Component({
   selector: 'app-game',
-  imports: [ CommonModule, CultivosComponent
+  imports: [ CommonModule, BottomPanelComponent, RightPanelComponent
   ],
   templateUrl: './game.component.html',
   styleUrl: './game.component.scss',
-  animations: [slideInAnimation]
+  animations: [slideInAnimation],
+  encapsulation: ViewEncapsulation.None 
 })
 export class GameComponent  implements OnInit, OnDestroy {
   title = 'SpaceFarm';
@@ -32,21 +34,6 @@ export class GameComponent  implements OnInit, OnDestroy {
     precipitation: 12
   };
 
-  weatherData: WeatherData = {
-    temperature: 24,
-    humidity: 68,
-    windSpeed: 12,
-    uvIndex: 6.2,
-    pressure: 1013
-  };
-
-  cropInfo: CropInfo = {
-    type: 'Tomate',
-    growth: 75,
-    health: 'Excelente',
-    daysToHarvest: 12,
-    estimatedYield: 2.3
-  };
 
   farmPlots: FarmPlot[] = [];
   notification: string = 'Riego automático activado en Sector B';

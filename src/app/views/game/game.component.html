@@ -56,97 +56,10 @@
   </div>
 
   <!-- Info Panel -->
-  <div class="info-panel">
-    <div class="weather-panel">
-      <h3>🌤️ Clima Actual</h3>
-      <div class="weather-item">
-        <span>Temperatura:</span>
-        <span style="color: #ff9800;">{{ weatherData.temperature }}°C</span>
-      </div>
-      <div class="weather-item">
-        <span>Humedad:</span>
-        <span style="color: #4fc3f7;">{{ weatherData.humidity }}%</span>
-      </div>
-      <div class="weather-item">
-        <span>Viento:</span>
-        <span style="color: #9e9e9e;">{{ weatherData.windSpeed }} km/h</span>
-      </div>
-      <div class="weather-item">
-        <span>UV Index:</span>
-        <span style="color: #ffc107;">{{ weatherData.uvIndex }}</span>
-      </div>
-      <div class="weather-item">
-        <span>Presión:</span>
-        <span style="color: #607d8b;">{{ weatherData.pressure }} hPa</span>
-      </div>
-    </div>
-
-    <div class="crop-info">
-      <h3>🌱 Información del Cultivo</h3>
-      <div class="weather-item">
-        <span>Tipo:</span>
-        <span style="color: #4caf50;">{{ cropInfo.type }}</span>
-      </div>
-      <div class="weather-item">
-        <span>Crecimiento:</span>
-        <span style="color: #8bc34a;">{{ cropInfo.growth }}%</span>
-      </div>
-      <div class="weather-item">
-        <span>Salud:</span>
-        <span style="color: #4caf50;">{{ cropInfo.health }}</span>
-      </div>
-      <div class="weather-item">
-        <span>Días para cosecha:</span>
-        <span style="color: #ff9800;">{{ cropInfo.daysToHarvest }}</span>
-      </div>
-      <div class="weather-item">
-        <span>Rendimiento est.:</span>
-        <span style="color: #4caf50;">{{ cropInfo.estimatedYield }} kg/m²</span>
-      </div>
-      
-      <div class="progress-bar">
-        <div class="progress-fill" [style.width.%]="cropInfo.growth"></div>
-      </div>
-    </div>
-  </div>
+   <app-right-panel></app-right-panel>
 
   <!-- Bottom Panel -->
   <div class="bottom-panel">
-    <app-cultivos></app-cultivos>
-    <div class="action-group">
-      <h4>💧 Riego</h4>
-      <div class="action-buttons">
-        <button class="action-btn" (click)="onActionClick('Riego Manual')">Riego Manual</button>
-        <button class="action-btn" (click)="onActionClick('Auto-Riego')">Auto-Riego</button>
-        <button class="action-btn" (click)="onActionClick('Drenaje')">Drenaje</button>
-        <button class="action-btn" (click)="onActionClick('Aspersores')">Aspersores</button>
-        <button class="action-btn" (click)="onActionClick('Goteo')">Goteo</button>
-        <button class="action-btn" (click)="onActionClick('Programar')">Programar</button>
-      </div>
-    </div>
-
-    <div class="action-group">
-      <h4>🐄 Ganadería</h4>
-      <div class="action-buttons">
-        <button class="action-btn" (click)="onActionClick('Alimentar')">Alimentar</button>
-        <button class="action-btn" (click)="onActionClick('Pastoreo')">Pastoreo</button>
-        <button class="action-btn" (click)="onActionClick('Salud')">Salud</button>
-        <button class="action-btn" (click)="onActionClick('Reproducción')">Reproducción</button>
-        <button class="action-btn" (click)="onActionClick('Ordeño')">Ordeño</button>
-        <button class="action-btn" (click)="onActionClick('Refugio')">Refugio</button>
-      </div>
-    </div>
-
-    <div class="action-group">
-      <h4>🔬 Investigación</h4>
-      <div class="action-buttons">
-        <button class="action-btn" (click)="onActionClick('Análisis Suelo')">Análisis Suelo</button>
-        <button class="action-btn" (click)="onActionClick('Predicción')">Predicción</button>
-        <button class="action-btn" (click)="onActionClick('Optimizar')">Optimizar</button>
-        <button class="action-btn" (click)="onActionClick('Sostenibilidad')">Sostenibilidad</button>
-        <button class="action-btn" (click)="onActionClick('Reportes')">Reportes</button>
-        <button class="action-btn" (click)="onActionClick('IA Agrícola')">IA Agrícola</button>
-      </div>
-    </div>
+    <app-bottom-panel></app-bottom-panel>
   </div>
 </div>

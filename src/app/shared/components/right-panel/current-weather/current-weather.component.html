@@ -1,0 +1,46 @@
+
+    <div class="weather-panel">
+
+      <!-- Indicador de carga -->
+      <div *ngIf="isLoading" class="loading">
+        🌤️ Cargando datos meteorológicos...
+      </div>
+
+      <div *ngIf="!isLoading"> 
+        <h3>🌤️ Clima Actual</h3>
+        <div class="weather-item">
+          <span>Temperatura:</span>
+          <span style="color: #ff9800;">{{ weatherData().temperature }}°C</span>
+        </div>
+        <div class="weather-item">
+          <span>Humedad:</span>
+          <span style="color: #4fc3f7;">{{ weatherData().humidity }}%</span>
+        </div>
+        <div class="weather-item">
+          <span>Viento:</span>
+          <span style="color: #9e9e9e;">{{ weatherData().windSpeed }} km/h</span>
+        </div>
+        <div class="weather-item">
+          <span>UV Index:</span>
+          <span style="color: #ffc107;">{{ weatherData().uvIndex }}</span>
+        </div>
+        <div class="weather-item">
+          <span>Presión:</span>
+          <span style="color: #607d8b;">{{ weatherData().pressure }} hPa</span>
+        </div>
+
+            
+        <small class="update" *ngIf="lastUpdateTime">
+          Actualizado: {{ lastUpdateTime }}
+        </small>
+
+      </div>
+      
+
+      <!-- Mensaje de error -->
+      <div *ngIf="errorMessage" class="error-message">
+        ⚠️ {{ errorMessage }}
+        <button (click)="refreshWeatherData()">🔄 Reintentar</button>
+      </div>
+
+    </div> 
