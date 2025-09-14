@@ -1,0 +1,66 @@
+
+    <div class="soil-analysis-container">
+      <div class="analysis-header">
+        <h3>Análisis de Suelo</h3>
+        <button class="btn btn-primary" (click)="startAnalysis()" [disabled]="loading">
+          {{ loading ? 'Analizando...' : 'Nuevo Análisis' }}
+        </button>
+      </div>
+      
+      <div class="analysis-grid" *ngIf="analyses.length > 0">
+        <div class="analysis-card" *ngFor="let analysis of analyses">
+          <div class="card-header">
+            <h4>Parcela {{ analysis.plotId }}</h4>
+            <!-- <span class="date">{{ analysis.analysisDate | date:'short' }}</span> -->
+          </div>
+          
+          <div class="metrics-grid">
+            <div class="metric">
+              <label>pH</label>
+              <div class="value" [class]="getPhStatus(analysis.ph)">
+                {{ analysis.ph }}
+              </div>
+            </div>
+            
+            <div class="metric">
+              <label>Nitrógeno</label>
+              <div class="value">{{ analysis.nitrogen }}%</div>
+            </div>
+            
+            <div class="metric">
+              <label>Fósforo</label>
+              <div class="value">{{ analysis.phosphorus }}%</div>
+            </div>
+            
+            <div class="metric">
+              <label>Potasio</label>
+              <div class="value">{{ analysis.potassium }}%</div>
+            </div>
+            
+            <div class="metric">
+              <label>Mat. Orgánica</label>
+              <div class="value">{{ analysis.organicMatter }}%</div>
+            </div>
+            
+            <div class="metric">
+              <label>Humedad</label>
+              <div class="value">{{ analysis.moisture }}%</div>
+            </div>
+          </div>
+          
+          <div class="recommendations" *ngIf="analysis.recommendations.length > 0">
+            <h5>Recomendaciones</h5>
+            <ul>
+              <li *ngFor="let rec of analysis.recommendations">{{ rec }}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <div class="empty-state" *ngIf="analyses.length === 0 && !loading">
+        <p>No hay análisis de suelo disponibles</p>
+        <button class="btn btn-outline" (click)="startAnalysis()">
+          Realizar primer análisis
+        </button>
+      </div>
+    </div>
