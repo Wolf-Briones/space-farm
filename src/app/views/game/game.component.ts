@@ -1,62 +1,21 @@
-import { trigger, style, transition, animate } from '@angular/animations';
-
-export const slideInAnimation = trigger('slideIn', [
-  transition(':enter', [
-    style({ transform: 'translateX(100%)', opacity: 0 }),
-    animate('0.5s ease-in-out', style({ transform: 'translateX(0)', opacity: 1 }))
-  ]),
-  transition(':leave', [
-    animate('0.5s ease-in-out', style({ transform: 'translateX(100%)', opacity: 0 }))
-  ])
-]);
 
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { interval, Subscription } from 'rxjs';
-import { CultivosComponent } from '../../shared/components/cultivos/cultivos.component';
+import { CropInfo, FarmPlot, Resource, SatelliteData, WeatherData } from '../../shared/interfaces/interfaces.test';
+import { slideInAnimation } from '../../shared/const/slide.animation';
+import { plotConfigurationsConst } from '../../shared/const/plot.configuration';
+import { BottomPanelComponent } from '../../shared/components/bottom-panel/bottom-panel.component';
+import { RightPanelComponent } from '../../shared/components/right-panel/right-panel.component';
 
-interface Resource {
-  type: 'water' | 'energy' | 'biomass' | 'research';
-  value: string;
-  icon: string;
-}
-
-interface SatelliteData {
-  soilHumidity: number;
-  vegetationIndex: number;
-  soilTemperature: number;
-  precipitation: number;
-}
-
-interface WeatherData {
-  temperature: number;
-  humidity: number;
-  windSpeed: number;
-  uvIndex: number;
-  pressure: number;
-}
-
-interface CropInfo {
-  type: string;
-  growth: number;
-  health: string;
-  daysToHarvest: number;
-  estimatedYield: number;
-}
-
-interface FarmPlot {
-  id: number;
-  planted: boolean;
-  irrigated: boolean;
-  cropIcon: string;
-}
 @Component({
   selector: 'app-game',
-  imports: [ CommonModule, CultivosComponent
+  imports: [ CommonModule, BottomPanelComponent, RightPanelComponent
   ],
   templateUrl: './game.component.html',
   styleUrl: './game.component.scss',
-  animations: [slideInAnimation]
+  animations: [slideInAnimation],
+  encapsulation: ViewEncapsulation.None 
 })
 export class GameComponent  implements OnInit, OnDestroy {
   title = 'SpaceFarm';
@@ -75,21 +34,6 @@ export class GameComponent  implements OnInit, OnDestroy {
     precipitation: 12
   };
 
-  weatherData: WeatherData = {
-    temperature: 24,
-    humidity: 68,
-    windSpeed: 12,
-    uvIndex: 6.2,
-    pressure: 1013
-  };
-
-  cropInfo: CropInfo = {
-    type: 'Tomate',
-    growth: 75,
-    health: 'Excelente',
-    daysToHarvest: 12,
-    estimatedYield: 2.3
-  };
 
   farmPlots: FarmPlot[] = [];
   notification: string = 'Riego automático activado en Sector B';
@@ -114,61 +58,7 @@ export class GameComponent  implements OnInit, OnDestroy {
   }
 
   initializeFarmPlots() {
-    const plotConfigurations = [
-      { planted: true, irrigated: true, cropIcon: '🌱' },
-      { planted: true, irrigated: false, cropIcon: '🌾' },
-      { planted: false, irrigated: false, cropIcon: '' },
-      { planted: true, irrigated: false, cropIcon: '🥕' },
-      { planted: false, irrigated: true, cropIcon: '' },
-      { planted: true, irrigated: true, cropIcon: '🌽' },
-      { planted: false, irrigated: false, cropIcon: '' },
-      { planted: true, irrigated: false, cropIcon: '🥬' },
-      
-      { planted: false, irrigated: false, cropIcon: '' },
-      { planted: true, irrigated: true, cropIcon: '🍅' },
-      { planted: true, irrigated: false, cropIcon: '🌱' },
-      { planted: false, irrigated: false, cropIcon: '' },
-      { planted: true, irrigated: false, cropIcon: '🥔' },
-      { planted: false, irrigated: true, cropIcon: '' },
-      { planted: false, irrigated: false, cropIcon: '' },
-      { planted: true, irrigated: false, cropIcon: '🌾' },
-      
-      { planted: true, irrigated: false, cropIcon: '🥕' },
-      { planted: false, irrigated: false, cropIcon: '' },
-      { planted: false, irrigated: true, cropIcon: '' },
-      { planted: true, irrigated: true, cropIcon: '🌽' },
-      { planted: false, irrigated: false, cropIcon: '' },
-      { planted: true, irrigated: false, cropIcon: '🥬' },
-      { planted: true, irrigated: false, cropIcon: '🍅' },
-      { planted: false, irrigated: false, cropIcon: '' },
-      
-      { planted: false, irrigated: false, cropIcon: '' },
-      { planted: true, irrigated: false, cropIcon: '🌱' },
-      { planted: true, irrigated: true, cropIcon: '🥔' },
-      { planted: false, irrigated: false, cropIcon: '' },
-      { planted: true, irrigated: false, cropIcon: '🌾' },
-      { planted: false, irrigated: true, cropIcon: '' },
-      { planted: false, irrigated: false, cropIcon: '' },
-      { planted: true, irrigated: false, cropIcon: '🥕' },
-      
-      { planted: true, irrigated: false, cropIcon: '🌽' },
-      { planted: false, irrigated: false, cropIcon: '' },
-      { planted: true, irrigated: true, cropIcon: '🥬' },
-      { planted: true, irrigated: false, cropIcon: '🍅' },
-      { planted: false, irrigated: false, cropIcon: '' },
-      { planted: false, irrigated: true, cropIcon: '' },
-      { planted: true, irrigated: false, cropIcon: '🌱' },
-      { planted: false, irrigated: false, cropIcon: '' },
-      
-      { planted: false, irrigated: false, cropIcon: '' },
-      { planted: true, irrigated: false, cropIcon: '🥔' },
-      { planted: true, irrigated: false, cropIcon: '🌾' },
-      { planted: false, irrigated: true, cropIcon: '' },
-      { planted: true, irrigated: true, cropIcon: '🥕' },
-      { planted: false, irrigated: false, cropIcon: '' },
-      { planted: true, irrigated: false, cropIcon: '🌽' },
-      { planted: true, irrigated: false, cropIcon: '🥬' }
-    ];
+    const plotConfigurations = plotConfigurationsConst;
 
     this.farmPlots = plotConfigurations.map((config, index) => ({
       id: index,
