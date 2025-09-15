@@ -1,6 +1,6 @@
 ## 📄 Licencia
-   Este proyecto está bajo licencia propietaria. Ver [LICENSE](LICENSE) para más detalles.
-   Copyright © 2025 SISTINCON SAC - Todos los derechos reservados.
+Este proyecto está licenciado bajo los términos de la [Apache License 2.0](LICENSE).  
+Copyright © 2025 Franki Eli Briones Prieto.
 
 # Spacefarmapp
 
