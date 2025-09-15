@@ -1,3 +1,7 @@
+## 📄 Licencia
+   Este proyecto está bajo licencia propietaria. Ver [LICENSE](LICENSE) para más detalles.
+   Copyright © 2025 SISTINCON SAC - Todos los derechos reservados.
+
 # Spacefarmapp
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.9.
