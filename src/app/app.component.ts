@@ -11,4 +11,5 @@ import { GameComponent } from './views/game/game.component';
 })
 export class AppComponent {
   title = 'spacefarmapp';
+  dev: boolean = true;
 }
