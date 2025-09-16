@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Firestore, collection, doc, addDoc, updateDoc, deleteDoc, getDocs, getDoc, query, where, orderBy, onSnapshot, DocumentReference, CollectionReference } from '@angular/fire/firestore';
 import { Observable, BehaviorSubject, throwError, from } from 'rxjs';
-import { map, catchError, tap, switchMap } from 'rxjs/operators';
+import { map, catchError } from 'rxjs/operators';
 
 // Interfaces para el tipado fuerte
 export interface CropInfo {
