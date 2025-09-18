@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RiegoComponent } from './riego.component';
+import { RiegoStatsPanelComponent } from './riego-stats-panel.component';
 
-describe('RiegoComponent', () => {
-  let component: RiegoComponent;
-  let fixture: ComponentFixture<RiegoComponent>;
+describe('RiegoStatsPanelComponent', () => {
+  let component: RiegoStatsPanelComponent;
+  let fixture: ComponentFixture<RiegoStatsPanelComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RiegoComponent]
+      imports: [RiegoStatsPanelComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(RiegoComponent);
+    fixture = TestBed.createComponent(RiegoStatsPanelComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

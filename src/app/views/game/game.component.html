@@ -41,18 +41,7 @@
 
   <!-- Main View -->
   <div class="main-view">
-    <div class="farm-grid">
-      <div 
-        *ngFor="let plot of farmPlots" 
-        [class]="getPlotClasses(plot)"
-        (click)="onPlotClick(plot)">
-        <span class="crop-icon" *ngIf="plot.planted">{{ plot.cropIcon }}</span>
-      </div>
-    </div>
-    
-    <div class="notification" *ngIf="showNotification" [@slideIn]>
-      {{ notification }}
-    </div>
+    <app-layout></app-layout>
   </div>
 
   <!-- Info Panel -->

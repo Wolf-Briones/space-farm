@@ -2,15 +2,17 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { interval, Subscription } from 'rxjs';
-import { CropInfo, FarmPlot, Resource, SatelliteData, WeatherData } from '../../shared/interfaces/interfaces.test';
+import { CropInfo, FarmPlot, Resource, SatelliteData } from '../../shared/interfaces/interfaces.test';
 import { slideInAnimation } from '../../shared/const/slide.animation';
 import { plotConfigurationsConst } from '../../shared/const/plot.configuration';
 import { BottomPanelComponent } from '../../shared/components/bottom-panel/bottom-panel.component';
 import { RightPanelComponent } from '../../shared/components/right-panel/right-panel.component';
+import { LayoutComponent } from '../../shared/components/layout/layout.component';
 
 @Component({
   selector: 'app-game',
-  imports: [ CommonModule, BottomPanelComponent, RightPanelComponent
+  imports: [ CommonModule, BottomPanelComponent, RightPanelComponent, 
+    LayoutComponent
   ],
   templateUrl: './game.component.html',
   styleUrl: './game.component.scss',

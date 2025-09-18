@@ -1,0 +1,12 @@
+<div class="farm-grid">
+    <app-layout-riego></app-layout-riego>
+
+    <!-- <div 
+        *ngFor="let plot of farmPlots">
+        <span class="crop-icon" *ngIf="plot.planted">{{ plot.cropIcon }}</span>
+      </div> -->
+</div>
+
+<div class="notification" *ngIf="showNotification" [@slideIn]>
+    {{ notification }}
+</div>

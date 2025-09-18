@@ -10,15 +10,7 @@ export interface SatelliteData {
   vegetationIndex: number;
   soilTemperature: number;
   precipitation: number;
-}
-
-export interface WeatherData {
-  temperature: number;
-  humidity: number;
-  windSpeed: number;
-  uvIndex: number;
-  pressure: number;
-}
+}  
 
 export interface CropInfo { 
     id: string;

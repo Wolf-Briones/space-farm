@@ -1,0 +1,512 @@
+
+    .info-panels {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-height: calc(100vh - 120px);
+      overflow-y: auto;
+
+      .info-panel {
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 15px;
+        padding: 20px;
+        border: 1px solid rgba(0, 212, 170, 0.2);
+        backdrop-filter: blur(10px);
+
+        h3 {
+          color: #00d4aa;
+          margin: 0 0 15px 0;
+          font-size: 18px;
+          font-weight: 600;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+
+          .weather-icon, .ai-icon {
+            width: 20px;
+            height: 20px;
+          }
+
+          .nasa-badge {
+            background: #ff6b35;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 10px;
+            font-weight: 700;
+            margin-left: auto;
+          }
+        }
+
+        h4 {
+          color: #00d4aa;
+          font-size: 14px;
+          margin: 15px 0 10px 0;
+          font-weight: 500;
+        }
+
+        &.plant-info {
+          .plant-details {
+            .detail-item {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              margin-bottom: 12px;
+
+              .label {
+                color: #a0aec0;
+                font-size: 14px;
+              }
+
+              .value {
+                color: #ffffff;
+                font-weight: 600;
+
+                &.days {
+                  color: #00d4aa;
+                  font-size: 18px;
+                }
+
+                &.yield {
+                  color: #ffd700;
+                }
+              }
+
+              .progress-container {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                flex: 1;
+                justify-content: flex-end;
+
+                &.season {
+                  width: 100%;
+                  justify-content: space-between;
+                }
+
+                .progress-bar {
+                  height: 6px;
+                  border-radius: 3px;
+                  transition: width 0.5s ease;
+                  position: relative;
+                  width: 60px;
+                  background: linear-gradient(45deg, #00d4aa, #00b894);
+
+                  &.season {
+                    width: 70%;
+                  }
+                }
+
+                .percentage {
+                  font-size: 12px;
+                  color: #ffffff;
+                  font-weight: 600;
+                  min-width: 35px;
+                }
+              }
+
+              .recommendation-text {
+                font-size: 12px;
+                color: #68d391;
+                font-style: italic;
+                text-align: right;
+              }
+            }
+          }
+
+          // Estilos para los botones de acción
+          .action-group {
+            margin: 20px 0 15px 0;
+            padding: 15px;
+            background: rgba(0, 212, 170, 0.05);
+            border-radius: 10px;
+            border: 1px solid rgba(0, 212, 170, 0.2);
+
+            h4 {
+              color: #00d4aa;
+              font-size: 16px;
+              margin: 0 0 12px 0;
+              font-weight: 600;
+            }
+
+            .action-buttons {
+              display: grid;
+              grid-template-columns: repeat(3, 1fr);
+              gap: 8px;
+
+              .action-btn {
+                background: rgba(255, 255, 255, 0.1);
+                border: 1px solid rgba(0, 212, 170, 0.3);
+                color: #ffffff;
+                padding: 8px 12px;
+                border-radius: 6px;
+                font-size: 12px;
+                font-weight: 500;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                text-align: center;
+
+                &:hover {
+                  background: rgba(0, 212, 170, 0.2);
+                  border-color: #00d4aa;
+                  transform: translateY(-1px);
+                  box-shadow: 0 4px 15px rgba(0, 212, 170, 0.2);
+                }
+
+                &:active {
+                  transform: translateY(0);
+                }
+              }
+            }
+          }
+
+          .water-btn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(45deg, #00d4aa, #00b894);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 15px;
+
+            &:hover {
+              transform: translateY(-2px);
+              box-shadow: 0 8px 25px rgba(0, 212, 170, 0.3);
+            }
+          }
+        }
+
+        &.weather-info {
+          .weather-details {
+            .weather-item {
+              display: flex;
+              align-items: center;
+              gap: 8px;
+              margin-bottom: 10px;
+
+              .weather-icon-small {
+                font-size: 16px;
+                width: 20px;
+              }
+
+              .label {
+                color: #a0aec0;
+                font-size: 14px;
+                flex: 1;
+              }
+
+              .value {
+                color: #ffffff;
+                font-weight: 600;
+
+                &.temperature {
+                  color: #ff7675;
+                }
+
+                &.humidity {
+                  color: #74b9ff;
+                }
+
+                &.wind {
+                  color: #a29bfe;
+                }
+
+                &.uv-index {
+                  font-weight: 700;
+                }
+
+                &.pressure {
+                  color: #fd79a8;
+                }
+              }
+            }
+          }
+
+          .weather-alerts {
+            margin-top: 15px;
+            
+            .alert {
+              background: rgba(255, 107, 53, 0.2);
+              border: 1px solid #ff6b35;
+              padding: 8px 12px;
+              border-radius: 8px;
+              margin-bottom: 8px;
+              font-size: 13px;
+              display: flex;
+              align-items: center;
+              gap: 8px;
+
+              &.drought {
+                background: rgba(255, 193, 7, 0.2);
+                border-color: #ffc107;
+                color: #ffc107;
+              }
+
+              &.rain {
+                background: rgba(116, 185, 255, 0.2);
+                border-color: #74b9ff;
+                color: #74b9ff;
+              }
+
+              &.flood {
+                background: rgba(220, 38, 127, 0.2);
+                border-color: #dc267f;
+                color: #dc267f;
+              }
+
+              .alert-icon {
+                font-size: 14px;
+              }
+            }
+          }
+
+          .ai-predictions {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(0, 212, 170, 0.3);
+
+            .prediction-text {
+              margin: 8px 0 4px 0;
+              color: #e2e8f0;
+              font-size: 14px;
+            }
+
+            .prediction-confidence {
+              margin: 0 0 10px 0;
+              color: #68d391;
+              font-size: 12px;
+              font-weight: 600;
+            }
+
+            .nasa-data-btn {
+              background: linear-gradient(45deg, #1e3a8a, #3b82f6);
+              border: none;
+              color: white;
+              padding: 8px 12px;
+              border-radius: 6px;
+              font-size: 12px;
+              cursor: pointer;
+              transition: all 0.3s ease;
+
+              &:hover {
+                transform: translateY(-1px);
+                box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+              }
+            }
+          }
+        }
+
+        &.ai-recommendations {
+          .recommendations-list {
+            .recommendation {
+              border-radius: 8px;
+              padding: 12px;
+              margin-bottom: 12px;
+              border-left: 4px solid;
+
+              &.warning {
+                background: rgba(255, 107, 53, 0.1);
+                border-left-color: #ff6b35;
+              }
+
+              &.info {
+                background: rgba(116, 185, 255, 0.1);
+                border-left-color: #74b9ff;
+              }
+
+              &.success {
+                background: rgba(0, 212, 170, 0.1);
+                border-left-color: #00d4aa;
+              }
+
+              .rec-header {
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 6px;
+
+                .priority {
+                  font-size: 11px;
+                  color: #a0aec0;
+                }
+
+                .rec-type {
+                  font-size: 10px;
+                  background: rgba(255, 255, 255, 0.2);
+                  padding: 2px 6px;
+                  border-radius: 4px;
+                  font-weight: 600;
+                }
+              }
+
+              .rec-message {
+                margin: 0;
+                font-size: 13px;
+                line-height: 1.4;
+              }
+
+              .rec-confidence {
+                margin-top: 6px;
+                font-size: 11px;
+                color: #68d391;
+                font-weight: 500;
+              }
+            }
+          }
+
+          .ai-insights {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(0, 212, 170, 0.3);
+
+            .insights-list {
+              list-style: none;
+              padding: 0;
+              margin: 0;
+
+              li {
+                font-size: 12px;
+                color: #e2e8f0;
+                margin-bottom: 6px;
+                padding-left: 15px;
+                position: relative;
+
+                &:before {
+                  content: "▸";
+                  color: #00d4aa;
+                  position: absolute;
+                  left: 0;
+                }
+              }
+            }
+          }
+
+          .ai-controls {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(0, 212, 170, 0.3);
+
+            .control-buttons {
+              display: flex;
+              gap: 8px;
+              margin-bottom: 12px;
+
+              .control-btn {
+                flex: 1;
+                padding: 8px 12px;
+                border: 1px solid rgba(0, 212, 170, 0.5);
+                background: rgba(0, 212, 170, 0.1);
+                color: #00d4aa;
+                border-radius: 6px;
+                font-size: 12px;
+                font-weight: 500;
+                cursor: pointer;
+                transition: all 0.3s ease;
+
+                &:hover:not(:disabled) {
+                  background: rgba(0, 212, 170, 0.2);
+                  transform: translateY(-1px);
+                }
+
+                &:disabled {
+                  opacity: 0.6;
+                  cursor: not-allowed;
+                }
+
+                &.secondary {
+                  border-color: rgba(116, 185, 255, 0.5);
+                  background: rgba(116, 185, 255, 0.1);
+                  color: #74b9ff;
+
+                  &:hover {
+                    background: rgba(116, 185, 255, 0.2);
+                  }
+                }
+              }
+            }
+
+            .ai-status {
+              display: flex;
+              align-items: center;
+              gap: 8px;
+              font-size: 12px;
+              color: #a0aec0;
+
+              .status-indicator {
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                background: #666;
+                transition: background 0.3s ease;
+
+                &.active {
+                  background: #00d4aa;
+                  animation: pulse 2s infinite;
+                }
+              }
+            }
+          }
+        }
+
+        &.stats-panel {
+          .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+
+            .stat-item {
+              text-align: center;
+              padding: 12px;
+              background: rgba(255, 255, 255, 0.05);
+              border-radius: 8px;
+              border: 1px solid rgba(255, 255, 255, 0.1);
+
+              .stat-value {
+                font-size: 24px;
+                font-weight: 700;
+                color: #00d4aa;
+                margin-bottom: 4px;
+              }
+
+              .stat-label {
+                font-size: 11px;
+                color: #a0aec0;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+              }
+            }
+          }
+
+          .season-progress {
+            .season-info {
+              text-align: center;
+              font-size: 12px;
+              color: #a0aec0;
+              margin-top: 8px;
+            }
+          }
+        }
+      }
+
+      /* Scrollbar personalizado */
+      &::-webkit-scrollbar {
+        width: 6px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 3px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: rgba(0, 212, 170, 0.6);
+        border-radius: 3px;
+
+        &:hover {
+          background: rgba(0, 212, 170, 0.8);
+        }
+      }
+    }

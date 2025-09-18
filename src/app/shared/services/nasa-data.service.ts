@@ -1,8 +1,8 @@
  import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, BehaviorSubject, interval, of } from 'rxjs';
-import { map, catchError, switchMap } from 'rxjs/operators';
-import { environment } from '../../../../../../environment/firebase.config';
+import { map, catchError, switchMap } from 'rxjs/operators'; 
+import { environment } from '../../../environment/firebase.config';
 
 export interface NASAWeatherData {
   temperature: number;

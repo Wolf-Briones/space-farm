@@ -1,0 +1,101 @@
+<div class="riego-container">
+
+  <div class="main-content">
+    <!-- Grid de Plantas -->
+    <div class="plants-grid-container">
+      <div class="grid-wrapper">
+        <div 
+          class="plants-grid" 
+          [style.grid-template-columns]="'repeat(' + gridSize + ', 1fr)'"
+          [style.grid-template-rows]="'repeat(' + gridSize + ', 1fr)'"
+        >
+          <div 
+            *ngFor="let row of [].constructor(gridSize); let r = index"
+            class="grid-row"
+          >
+            <div 
+              *ngFor="let col of [].constructor(gridSize); let c = index"
+              class="grid-cell"
+              [style.background-color]="getCellColor(getPlantAt(r, c))"
+              [appPlantTooltip]="getPlantAt(r, c)"
+              (mouseenter)="onCellHover(getPlantAt(r, c))"
+              (mouseleave)="onCellHover(null)"
+              (click)="onCellClick(getPlantAt(r, c))"
+            >
+              <div *ngIf="getPlantAt(r, c)" class="plant-icon">
+                {{ getPlantIcon(getPlantAt(r, c)!) }}
+              </div>
+              <!-- Indicador de nivel de agua -->
+              <div *ngIf="getPlantAt(r, c)" class="water-indicator">
+                <div 
+                  class="water-level"
+                  [style.height]="getPlantAt(r, c)!.waterLevel + '%'"
+                ></div>
+              </div>
+              <!-- Indicador de salud -->
+              <div *ngIf="getPlantAt(r, c)" class="health-indicator">
+                <span class="health-icon">{{ (getPlantAt(r, c)! | plantHealthStatus:'icon') }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> 
+  </div>
+
+  <!-- Modal de Programación de Riego -->
+  <div class="modal-overlay" *ngIf="showScheduleModal" (click)="closeScheduleModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <h3>⏰ Programar Riego</h3>
+        <button class="close-btn" (click)="closeScheduleModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="schedule-form">
+          <div class="form-group">
+            <label>Tipo de Riego:</label>
+            <select [(ngModel)]="scheduleForm.type">
+              <option value="manual">Manual</option>
+              <option value="auto">Automático</option>
+              <option value="goteo">Goteo</option>
+              <option value="aspersores">Aspersores</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Frecuencia:</label>
+            <select [(ngModel)]="scheduleForm.frequency">
+              <option value="daily">Diario</option>
+              <option value="weekly">Semanal</option>
+              <option value="custom">Personalizado</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Hora de Inicio:</label>
+            <input type="time" [(ngModel)]="scheduleForm.startTime">
+          </div>
+          <div class="form-group">
+            <label>Duración (minutos):</label>
+            <input type="number" [(ngModel)]="scheduleForm.duration" min="1" max="120">
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="modal-btn secondary" (click)="closeScheduleModal()">Cancelar</button>
+        <button class="modal-btn primary" (click)="saveSchedule()">Guardar Programación</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Notificaciones Toast -->
+  <div class="toast-container">
+    <div 
+      *ngFor="let notification of notifications; let i = index"
+      class="toast"
+      [ngClass]="notification.type"
+    >
+      <!-- <span class="toast-icon">{{ getNotificationIcon(notification.type) }}</span> -->
+      <span class="toast-message">{{ notification.message }}</span>
+      <!-- <button class="toast-close" (click)="dismissNotification(i)">✕</button> -->
+    </div>
+  </div>
+</div>

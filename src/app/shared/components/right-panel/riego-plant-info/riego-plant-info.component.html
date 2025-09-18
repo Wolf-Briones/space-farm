@@ -1,0 +1,83 @@
+      <!-- Información de Planta Seleccionada -->
+       <div class="card">
+          <div class="plant-info" *ngIf="selectedPlant">
+            <h3>🌱 Información del Cultivo</h3>
+            <div class="plant-details">
+              <div class="detail-item">
+                <span class="label">Tipo:</span>
+                <span class="value">{{ selectedPlant.type }}</span>
+              </div>
+              <div class="detail-item">
+                <span class="label">Estado:</span>
+                <span class="value" [style.color]="(selectedPlant | plantHealthStatus:'color')">
+                  {{ selectedPlant | plantHealthStatus:'status' }}
+                </span>
+              </div>
+              <div class="detail-item">
+                <span class="label">Crecimiento:</span>
+                <div class="progress-container">
+                  <div 
+                    class="progress-bar" 
+                    [style.width]="selectedPlant.growth + '%'"
+                    [style.background-color]="getHealthColor(selectedPlant.growth)"
+                  ></div>
+                  <span class="percentage">{{ selectedPlant.growth }}%</span>
+                </div>
+              </div>
+              <div class="detail-item">
+                <span class="label">Salud:</span>
+                <div class="progress-container">
+                  <div 
+                    class="progress-bar" 
+                    [style.width]="selectedPlant.health + '%'"
+                    [style.background-color]="getHealthColor(selectedPlant.health)"
+                  ></div>
+                  <span class="percentage">{{ selectedPlant.health }}%</span>
+                </div>
+              </div>
+              <div class="detail-item">
+                <span class="label">Agua:</span>
+                <div class="progress-container">
+                  <div 
+                    class="progress-bar" 
+                    [style.width]="selectedPlant.waterLevel + '%'"
+                    [style.background-color]="selectedPlant.waterLevel | waterLevelColor"
+                  ></div>
+                  <span class="percentage" [style.color]="selectedPlant.waterLevel | waterLevelColor">
+                    {{ selectedPlant.waterLevel }}% ({{ selectedPlant.waterLevel | waterLevelColor:'status' }})
+                  </span>
+                </div>
+              </div>
+              <div class="detail-item">
+                <span class="label">Días para cosecha:</span>
+                <span class="value days">{{ selectedPlant.daysToHarvest }}</span>
+              </div>
+              <div class="detail-item">
+                <span class="label">Rendimiento est.:</span>
+                <span class="value yield">{{ selectedPlant.expectedYield.toFixed(1) }} kg/m²</span>
+              </div>
+              <div class="detail-item">
+                <span class="label">Recomendación:</span>
+                <span class="recommendation-text">{{ selectedPlant | plantHealthStatus:'recommendation' }}</span>
+              </div>
+            </div>
+
+            <!-- Botones de Acción de Riego -->
+            <!-- <div class="action-group">
+              <h4>💧 Riegos</h4>
+              <div class="action-buttons">
+                <button class="action-btn" (click)="onActionClick('Riego Manual')">Riego Manual</button>
+                <button class="action-btn" (click)="onActionClick('Auto-Riego')">Auto-Riego</button>
+                <button class="action-btn" (click)="onActionClick('Drenaje')">Drenaje</button>
+                <button class="action-btn" (click)="onActionClick('Aspersores')">Aspersores</button>
+                <button class="action-btn" (click)="onActionClick('Goteo')">Goteo</button>
+                <button class="action-btn" (click)="onActionClick('Programar')">Programar</button>
+              </div>
+            </div> -->
+
+            <!-- Botón de Riego Rápido -->
+            <!-- <button class="water-btn" (click)="waterPlant(selectedPlant)">
+              💧 Riego Rápido (+20%)
+            </button> -->
+          </div>
+       </div>

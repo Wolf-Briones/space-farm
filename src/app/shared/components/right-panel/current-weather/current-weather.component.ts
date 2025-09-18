@@ -1,9 +1,9 @@
-import { Component, inject, signal, OnInit } from '@angular/core';
-import { WeatherData } from '../../../interfaces/interfaces.test';
+import { Component, inject, signal, OnInit } from '@angular/core'; 
 import { NasaWeatherService } from '../../../../core/services/nasa-weather.service';
 import { ParametersWeatherService } from '../../../services/parameters-weather.service';
 import { CommonModule } from '@angular/common';
 import { WeatherDataProcessed } from '../../../interfaces/weather.interface';
+import { WeatherData } from '../../../interfaces/plants.interfaces';
 
 @Component({
   selector: 'app-current-weather',
