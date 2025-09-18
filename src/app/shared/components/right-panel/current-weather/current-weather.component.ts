@@ -1,7 +1,7 @@
 import { Component, inject, signal, OnInit } from '@angular/core';
 import { WeatherData } from '../../../interfaces/interfaces.test';
 import { NasaWeatherService } from '../../../../core/services/nasa-weather.service';
-import { ParametersWeatherService } from '../../../services/parameters-weather.service';
+import { ParametersWeatherService } from '../../../../core/services/parameters-weather.service';
 import { CommonModule } from '@angular/common';
 import { WeatherDataProcessed } from '../../../interfaces/weather.interface';
 

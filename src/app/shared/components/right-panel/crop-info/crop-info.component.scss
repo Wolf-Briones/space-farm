@@ -1,3 +1,104 @@
-.weather-item {
-    color: aliceblue;
+/* src/app/shared/components/right-panel/crop-info/crop-info.component.scss */
+
+/* Los estilos generales para .crop-info (background, padding, border, etc.)
+   se asume que se aplican desde game.component.scss o right-panel.component.scss
+   para mantener la consistencia con otros paneles. */
+
+.crop-info {
+}
+
+.data-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 14px; /* Consistencia con otros paneles */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1); // Separador
+  padding-bottom: 4px; // Espacio entre el texto y el separador
+
+  &:last-of-type {
+    border-bottom: none; // Sin separador para el último ítem de datos
+  }
+
+  span:first-child {
+    font-weight: 500;
+    color: #e0e0e0;
+  }
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+  margin-top: 10px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #4caf50 0%, #8bc34a 100%);
+  transition: width 0.3s ease;
+}
+
+/* Estilos para los estados de carga, error y actualización */
+.loading {
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+  font-size: 1.1rem;
+}
+
+.error-message {
+  background: #fee;
+  border: 1px solid #f66;
+  border-radius: 4px;
+  padding: 1rem;
+  color: #c33;
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 1rem;
+
+  button {
+    margin-left: 1rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    background: #007bff;
+    color: white;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.2s ease-in-out;
+
+    &:hover {
+      background: #0056b3;
+    }
+  }
+}
+
+.update {
+  display: block;
+  text-align: right;
+  font-size: 0.9rem;
+  font-weight: small;
+  color: #00ff88;
+  margin-top: 1rem;
+}
+
+// Estilos para los botones de prueba si los dejas
+.action-btn {
+  background: linear-gradient(45deg, #4a90e2 0%, #357abd 100%);
+  border: none;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: all 0.3s ease;
+  border: 1px solid #6bb6ff;
+
+  &:hover {
+    background: linear-gradient(45deg, #357abd 0%, #2968a3 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
 }

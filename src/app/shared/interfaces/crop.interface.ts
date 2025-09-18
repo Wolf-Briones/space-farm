@@ -16,11 +16,6 @@ export interface CropInfo {
   };
   notas?: string;
   ultimaActualizacion?: Date;
-  growth?: number; // Progreso de crecimiento (0-100)
-  estimatedYield?: number; // Rendimiento estimado en kg/m²
-  healthStatus?: string; // Estado de salud como texto
-  daysToHarvest?: number; // Días restantes para la cosecha
-  type?: string; // Tipo de cultivo
 }
 
 export interface CropData {

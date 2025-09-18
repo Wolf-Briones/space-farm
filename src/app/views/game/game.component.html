@@ -1,3 +1,4 @@
+<!-- src/app/views/game/game.component.html -->
 <div class="game-container">
   <!-- Header -->
   <div class="header">
@@ -12,44 +13,24 @@
 
   <!-- Sidebar -->
   <div class="sidebar">
-    <div class="minimap">
-      <div style="position: absolute; bottom: 10px; left: 10px; color: #00ff88; font-size: 10px;">
-        Vista Satelital NASA
-      </div>
-    </div>
-    
-    <div class="satellite-data">
-      <h3>📡 Datos Satelitales</h3>
-      <div class="data-item">
-        <span>Humedad del suelo:</span>
-        <span class="pulse" style="color: #4fc3f7;">{{ satelliteData.soilHumidity }}%</span>
-      </div>
-      <div class="data-item">
-        <span>Índice vegetación:</span>
-        <span style="color: #4caf50;">{{ satelliteData.vegetationIndex }}</span>
-      </div>
-      <div class="data-item">
-        <span>Temperatura suelo:</span>
-        <span style="color: #ff9800;">{{ satelliteData.soilTemperature }}°C</span>
-      </div>
-      <div class="data-item">
-        <span>Precipitación:</span>
-        <span style="color: #2196f3;">{{ satelliteData.precipitation }}mm</span>
-      </div>
-    </div>
+    <app-nasa-satellite-view></app-nasa-satellite-view>
+
+    <!-- Tu componente de Datos Satelitales (numeric data) -->
+    <app-satellite-data></app-satellite-data>
+
   </div>
 
   <!-- Main View -->
   <div class="main-view">
     <div class="farm-grid">
-      <div 
-        *ngFor="let plot of farmPlots" 
+      <div
+        *ngFor="let plot of farmPlots"
         [class]="getPlotClasses(plot)"
         (click)="onPlotClick(plot)">
         <span class="crop-icon" *ngIf="plot.planted">{{ plot.cropIcon }}</span>
       </div>
     </div>
-    
+
     <div class="notification" *ngIf="showNotification" [@slideIn]>
       {{ notification }}
     </div>

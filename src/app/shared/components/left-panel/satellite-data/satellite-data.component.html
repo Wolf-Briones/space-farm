@@ -1,0 +1,39 @@
+<!-- src/app/shared/components/left-panel/satellite-data/satellite-data.component.html -->
+
+<!-- Ahora usamos la clase 'satellite-panel' para que game.component.scss pueda aplicar los estilos generales -->
+<div class="satellite-panel">
+  <!-- Indicador de carga -->
+  <div *ngIf="isLoading" class="loading">
+    🛰️ Cargando datos satelitales...
+  </div>
+
+  <div *ngIf="!isLoading">
+    <h3>📡 Datos Satelitales</h3>
+    <div class="data-item">
+      <span>Humedad del suelo:</span>
+      <span style="color: #4fc3f7;">{{ satelliteData().soilMoisture }}%</span>
+    </div>
+    <div class="data-item">
+      <span>Índice vegetación:</span>
+      <span style="color: #8bc34a;">{{ satelliteData().vegetationIndex }}</span>
+    </div>
+    <div class="data-item">
+      <span>Temperatura suelo:</span>
+      <span style="color: #ff9800;">{{ satelliteData().soilTemperature }}°C</span>
+    </div>
+    <div class="data-item">
+      <span>Precipitación:</span>
+      <span style="color: #2196f3;">{{ satelliteData().precipitation }}mm</span>
+    </div>
+
+    <small class="update" *ngIf="lastUpdateTime">
+      Actualizado: {{ lastUpdateTime }}
+    </small>
+  </div>
+
+  <!-- Mensaje de error -->
+  <div *ngIf="errorMessage" class="error-message">
+    ⚠️ {{ errorMessage }}
+    <button (click)="refreshSatelliteData()">🔄 Reintentar</button>
+  </div>
+</div>

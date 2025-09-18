@@ -1,29 +1,53 @@
+<!-- src/app/shared/components/right-panel/crop-info/crop-info.component.html -->
 
+<div class="crop-info">
+  <!-- Indicador de carga -->
+  <div *ngIf="loading()" class="loading">
+    🌱 Cargando datos del cultivo...
+  </div>
 
-    <div class="crop-info">
-      <h3>🌱 Información del Cultivo</h3>
-      <div class="weather-item">
-        <span>Tipo:</span>
-        <span style="color: #4caf50;">{{ cropInfo.type }}</span>
-      </div>
-      <div class="weather-item">
-        <span>Crecimiento:</span>
-        <span style="color: #8bc34a;">{{ cropInfo.growth }}%</span>
-      </div>
-      <div class="weather-item">
-        <span>Salud:</span>
-        <span style="color: #4caf50;">{{ cropInfo.healthStatus }}</span>
-      </div>
-      <div class="weather-item">
-        <span>Días para cosecha:</span>
-        <span style="color: #ff9800;">{{ cropInfo.daysToHarvest }}</span>
-      </div>
-      <div class="weather-item">
-        <span>Rendimiento est.:</span>
-        <span style="color: #4caf50;">{{ cropInfo.estimatedYield }} kg/m²</span>
-      </div>
-      
-      <div class="progress-bar">
-        <div class="progress-fill" [style.width.%]="cropInfo.growth"></div>
-      </div>
+  <div *ngIf="!loading() && cropData()">
+    <h3>🌱 Información del Cultivo</h3>
+    <div class="data-item">
+      <span>Tipo:</span>
+      <span style="color: #a4c639;">{{ cropData()?.tipo || 'N/A' }}</span>
     </div>
+    <div class="data-item">
+      <span>Crecimiento:</span>
+      <span style="color: #4caf50;">{{ cropData()?.crecimiento || 0 }}%</span>
+    </div>
+    <div class="data-item">
+      <span>Salud:</span>
+      <span style="color: #00ff88;">{{ cropData()?.salud || 'N/A' }}</span>
+    </div>
+    <div class="data-item">
+      <span>Días para cosecha:</span>
+      <span style="color: #ffc107;">{{ cropData()?.diasParaCosecha || 0 }}</span>
+    </div>
+    <div class="data-item">
+      <span>Rendimiento est.:</span>
+      <span style="color: #795548;">{{ cropData()?.rendimientoEst || 0 }} kg/m²</span>
+    </div>
+
+    <!-- Barra de progreso para el rendimiento estimado, basada en crecimiento -->
+    <div class="progress-bar">
+      <div class="progress-fill" [style.width.%]="cropData()?.crecimiento || 0"></div>
+    </div>
+
+    <small class="update" *ngIf="lastUpdate()">
+      Actualizado: {{ lastUpdate() }}
+    </small>
+  </div>
+
+  <!-- Mensaje de error (solo si no está cargando y hay un error) -->
+  <div *ngIf="!loading() && error()" class="error-message">  
+    ⚠️ {{ error() }}                                        
+    <button (click)="refreshData()">🔄 Reintentar</button>
+  </div>
+
+  <!-- Botones de prueba (puedes quitarlos después de verificar) -->
+  <!-- <div style="margin-top: 15px; text-align: center; display: flex; gap: 10px; justify-content: center;">
+    <button (click)="updateProgress()" class="action-btn">Aumentar Crecimiento</button>
+    <button (click)="createSampleData()" class="action-btn">Crear Cultivo Prueba</button>
+  </div> -->
+</div>

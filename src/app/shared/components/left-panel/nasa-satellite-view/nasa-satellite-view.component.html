@@ -1,0 +1,30 @@
+<!-- src/app/shared/components/left-panel/nasa-satellite-view/nasa-satellite-view.component.html -->
+
+<div class="nasa-satellite-view-container">
+  <div *ngIf="loading()" class="loading">
+    🛰️ Cargando vista satelital...
+  </div>
+
+  <!-- Muestra el mensaje de error como una superposición clara si hay un error -->
+  <div *ngIf="error()" class="error-message-overlay">
+    <p>⚠️ Error al cargar la vista</p>
+    <p>{{ error() }}</p>
+    <button (click)="refreshImage()">🔄 Reintentar</button>
+  </div>
+
+  <!-- Muestra la imagen solo si no hay carga, no hay error Y hay datos de imagen -->
+  <div *ngIf="!loading() && !error() && satelliteImage()" class="image-content">
+    <img [src]="satelliteImage()!.imageUrl" alt="Vista Satelital NASA" class="satellite-image">
+    <div class="image-info">
+      <p>Vista Satelital NASA</p>
+      <small>({{ satelliteImage()!.description || 'Datos de la capa' }})</small>
+      <small *ngIf="satelliteImage()!.date">Fecha: {{ satelliteImage()!.date }}</small>
+    </div>
+  </div>
+
+  <!-- Estado vacío si no hay carga, no hay error y no hay datos de imagen -->
+  <div *ngIf="!loading() && !error() && !satelliteImage()" class="empty-state">
+      <p>Vista Satelital NASA</p>
+      <small>Esperando datos de ubicación...</small>
+  </div>
+</div>

@@ -1,3 +1,4 @@
+/* src/app/views/game/game.component.scss */
 * {
   margin: 0;
   padding: 0;
@@ -15,7 +16,7 @@
 
 .game-container {
   display: grid;
-  grid-template-areas: 
+  grid-template-areas:
     "header header header"
     "sidebar main-view info-panel"
     "bottom-panel bottom-panel bottom-panel";
@@ -76,6 +77,9 @@
   background: linear-gradient(180deg, #1a1a3a 0%, #2d2d5a 100%);
   border-right: 2px solid #4a90e2;
   padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px; // Espacio entre el minimapa y los datos satelitales
 }
 
 .minimap {
@@ -84,7 +88,6 @@
   background: linear-gradient(45deg, #2e5c2e 0%, #4a7c4a 50%, #6b8e6b 100%);
   border: 2px solid #00ff88;
   border-radius: 8px;
-  margin-bottom: 20px;
   position: relative;
   overflow: hidden;
 }
@@ -99,26 +102,6 @@
   background: #ff4444;
   border-radius: 50%;
   opacity: 0.8;
-}
-
-.satellite-data {
-  background: rgba(0, 0, 0, 0.4);
-  padding: 10px;
-  border-radius: 6px;
-  border: 1px solid #4a90e2;
-}
-
-.satellite-data h3 {
-  color: #00ff88;
-  margin-bottom: 10px;
-  font-size: 14px;
-}
-
-.data-item {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 8px;
-  font-size: 12px;
 }
 
 /* Main View - Campo de juego */
@@ -172,7 +155,7 @@
   font-size: 24px;
 }
 
-/* Info Panel */
+/* Info Panel (Contenedor del RightPanel) */
 .info-panel {
   grid-area: info-panel;
   background: linear-gradient(180deg, #1a1a3a 0%, #2d2d5a 100%);
@@ -181,7 +164,8 @@
   overflow-y: auto;
 }
 
-.weather-panel {
+/* Estilos para los paneles de información, incluyendo el nuevo de satélite */
+.weather-panel, .crop-info, .satellite-panel { /* <-- ¡Aquí añadimos .satellite-panel! */
   background: rgba(0, 0, 0, 0.4);
   padding: 15px;
   border-radius: 8px;
@@ -189,29 +173,21 @@
   margin-bottom: 15px;
 }
 
-.weather-panel h3 {
+/* Estilos comunes para los títulos de los paneles */
+.weather-panel h3, .crop-info h3, .satellite-panel h3 { /* <-- ¡Aquí añadimos .satellite-panel! */
   color: #00ff88;
   margin-bottom: 10px;
+  font-size: 14px; /* Asegura consistencia con el tamaño del original */
 }
 
-.weather-item {
+/* Estilos comunes para los ítems de datos dentro de los paneles */
+.weather-panel .weather-item, .crop-info .data-item, .satellite-panel .data-item { /* <-- ¡Aquí añadimos .satellite-panel! */
   display: flex;
   justify-content: space-between;
   margin-bottom: 8px;
-  font-size: 14px;
+  font-size: 14px; /* Asegura consistencia */
 }
 
-.crop-info {
-  background: rgba(0, 0, 0, 0.4);
-  padding: 15px;
-  border-radius: 8px;
-  border: 1px solid #4a90e2;
-}
-
-.crop-info h3 {
-  color: #00ff88;
-  margin-bottom: 10px;
-}
 
 /* Bottom Panel - Acciones */
 .bottom-panel {

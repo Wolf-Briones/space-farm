@@ -15,7 +15,7 @@ export interface TemperaturaResponse {
 })
 export class TemperaturaService {
     private readonly nasaApiUrl = 'https://api.nasa.gov/temperature'; // Reemplaza con el endpoint real
-    private readonly apiKey = environment.APIKeyTemperarura; // Reemplaza con tu API Key
+    private apiKey: string = 'TU_API_KEY_AQUI'; // Reemplaza con tu API Key
 
     constructor(private http: HttpClient) {}
 
