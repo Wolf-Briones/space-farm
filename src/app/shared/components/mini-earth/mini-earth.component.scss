@@ -1,0 +1,425 @@
+/* mini-earth.component.scss */
+:host {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.earth-view-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background: linear-gradient(45deg, #2d5a2d 0%, #4a7c4a 25%, #6b8e6b 50%, #4a7c4a 75%, #2d5a2d 100%);
+  transition: all 0.5s ease;
+
+  &.expanded {
+    background: radial-gradient(ellipse at center, #1e3c72 0%, #0a0a2e 70%, #000000 100%);
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        radial-gradient(1px 1px at 20px 30px, #eee, transparent),
+        radial-gradient(1px 1px at 40px 70px, rgba(255,255,255,0.8), transparent),
+        radial-gradient(1px 1px at 90px 40px, #fff, transparent);
+      background-repeat: repeat;
+      background-size: 150px 100px;
+      animation: twinkle 3s infinite;
+      z-index: 1;
+      opacity: 0.6;
+    }
+  }
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+
+/* Toggle Button */
+.view-toggle-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: rgba(0, 0, 0, 0.7);
+  border: 2px solid #4a90e2;
+  border-radius: 25px;
+  padding: 8px 16px;
+  color: #00ff88;
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  cursor: pointer;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+
+  &:hover {
+    background: rgba(0, 255, 136, 0.2);
+    transform: scale(1.05);
+  }
+
+  .toggle-icon {
+    font-size: 16px;
+  }
+
+  .toggle-text {
+    font-weight: bold;
+    font-size: 11px;
+  }
+}
+
+/* Farm View */
+.farm-view {
+  width: 100%;
+  height: 100%;
+  transition: all 0.5s ease;
+  
+  &.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.9);
+  }
+}
+
+.farm-grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  gap: 2px;
+  padding: 20px;
+}
+
+.farm-plot {
+  background: rgba(76, 175, 80, 0.3);
+  border: 1px solid #4caf50;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+
+  &:hover {
+    background: rgba(76, 175, 80, 0.6);
+    transform: scale(1.05);
+  }
+
+  &.planted {
+    background: rgba(139, 195, 74, 0.8);
+  }
+
+  &.irrigated {
+    border-color: #03a9f4;
+    box-shadow: 0 0 10px rgba(3, 169, 244, 0.5);
+  }
+}
+
+.crop-icon {
+  font-size: 24px;
+}
+
+/* Earth View */
+.earth-view {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.5s ease;
+  z-index: 10;
+
+  &.visible {
+    opacity: 1;
+    pointer-events: all;
+  }
+}
+
+.earth-canvas {
+  width: 100%;
+  height: 100%;
+  cursor: grab;
+
+  &:active {
+    cursor: grabbing;
+  }
+}
+
+/* Earth Controls */
+.earth-controls {
+  position: absolute;
+  top: 50px;
+  left: 15px;
+  right: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  z-index: 20;
+  pointer-events: none;
+
+  > * {
+    pointer-events: all;
+  }
+}
+
+.earth-info-card {
+  background: rgba(30, 60, 114, 0.9);
+  border: 2px solid #4a90e2;
+  border-radius: 12px;
+  padding: 15px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.location-display {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+
+  .location-icon {
+    font-size: 20px;
+    color: #00ff88;
+  }
+
+  .location-text {
+    .location-name {
+      color: #00ff88;
+      font-weight: bold;
+      font-size: 14px;
+      margin-bottom: 2px;
+    }
+
+    .location-coords {
+      color: #e0e0e0;
+      font-size: 11px;
+    }
+  }
+}
+
+.earth-stats {
+  display: flex;
+  justify-content: space-between;
+
+  .stat-item {
+    display: flex;
+    gap: 5px;
+    font-size: 12px;
+
+    .stat-label {
+      color: #e0e0e0;
+    }
+
+    .stat-value {
+      color: #4fc3f7;
+      font-weight: bold;
+
+      &.pulse {
+        animation: pulse 2s infinite;
+      }
+    }
+  }
+}
+
+.earth-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+
+  .earth-btn {
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid #4a90e2;
+    border-radius: 8px;
+    padding: 8px 12px;
+    color: #e0e0e0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 16px;
+    backdrop-filter: blur(5px);
+
+    &:hover:not(:disabled) {
+      background: rgba(74, 144, 226, 0.3);
+      transform: translateY(-2px);
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    span {
+      display: block;
+    }
+  }
+}
+
+/* Loading State */
+.earth-loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  z-index: 30;
+  color: #e0e0e0;
+  font-family: 'Courier New', monospace;
+
+  .loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(0, 255, 136, 0.3);
+    border-top: 3px solid #00ff88;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+
+  p {
+    font-size: 14px;
+    margin: 0;
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.7; }
+  100% { opacity: 1; }
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .farm-grid {
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+  }
+
+  .earth-controls {
+    top: 40px;
+    left: 10px;
+    right: 10px;
+  }
+
+  .earth-info-card {
+    padding: 12px;
+  }
+
+  .location-display {
+    .location-text {
+      .location-name {
+        font-size: 13px;
+      }
+      .location-coords {
+        font-size: 10px;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .farm-grid {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(12, 1fr);
+    padding: 15px;
+    gap: 1px;
+  }
+
+  .crop-icon {
+    font-size: 18px;
+  }
+
+  .view-toggle-btn {
+    top: 10px;
+    right: 10px;
+    padding: 6px 12px;
+    
+    .toggle-text {
+      font-size: 10px;
+    }
+  }
+
+  .earth-controls {
+    top: 35px;
+    left: 8px;
+    right: 8px;
+    gap: 10px;
+  }
+
+  .earth-info-card {
+    padding: 10px;
+  }
+
+  .location-display {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 8px;
+
+    .location-icon {
+      font-size: 16px;
+    }
+  }
+
+  .earth-actions {
+    gap: 6px;
+
+    .earth-btn {
+      padding: 6px 8px;
+      font-size: 14px;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .farm-grid {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(16, 1fr);
+    padding: 10px;
+  }
+
+  .crop-icon {
+    font-size: 16px;
+  }
+
+  .earth-controls {
+    top: 30px;
+    left: 5px;
+    right: 5px;
+  }
+
+  .earth-stats {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .earth-actions {
+    justify-content: space-around;
+    
+    .earth-btn {
+      flex: 1;
+      max-width: 50px;
+    }
+  }
+}

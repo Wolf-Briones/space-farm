@@ -1,0 +1,73 @@
+<!-- mini-earth.component.html -->
+<div class="earth-view-container" [class.expanded]="isExpanded">
+  <!-- Toggle Button -->
+  <button 
+    class="view-toggle-btn" 
+    (click)="toggleView()"
+    [title]="isExpanded ? 'Ver Granja' : 'Ver Globo'">
+    <span class="toggle-icon">{{ isExpanded ? '🚜' : '🌍' }}</span>
+    <span class="toggle-text">{{ isExpanded ? 'Granja' : 'Globo' }}</span>
+  </button>
+
+  <!-- Farm Grid View -->
+  <div class="farm-view" [class.hidden]="isExpanded">
+    <div class="farm-grid">
+      <div 
+        *ngFor="let plot of farmPlots" 
+        [class]="getPlotClasses(plot)"
+        (click)="onPlotClick(plot)">
+        <span class="crop-icon" *ngIf="plot.planted">{{ plot.cropIcon }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Earth Globe View -->
+  <div class="earth-view" [class.visible]="isExpanded">
+    <canvas #earthCanvas class="earth-canvas"></canvas>
+    
+    <!-- Earth Controls -->
+    <div class="earth-controls">
+      <div class="earth-info-card">
+        <div class="location-display">
+          <span class="location-icon">📍</span>
+          <div class="location-text">
+            <div class="location-name">{{ locationData.city }}, {{ locationData.country }}</div>
+            <div class="location-coords">{{ locationData.coordinates }}</div>
+          </div>
+        </div>
+        
+        <div class="earth-stats">
+          <div class="stat-item">
+            <span class="stat-label">Vista:</span>
+            <span class="stat-value pulse">Satelital NASA</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Zoom:</span>
+            <span class="stat-value">{{ zoomLevel }}%</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="earth-actions">
+        <button class="earth-btn" (click)="zoomIn()" [disabled]="zoomLevel >= 200">
+          <span>🔍+</span>
+        </button>
+        <button class="earth-btn" (click)="zoomOut()" [disabled]="zoomLevel <= 50">
+          <span>🔍-</span>
+        </button>
+        <button class="earth-btn" (click)="resetView()">
+          <span>🎯</span>
+        </button>
+        <button class="earth-btn" (click)="toggleRotation()">
+          <span>{{ isRotating ? '⏸️' : '▶️' }}</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loading State -->
+  <div class="earth-loading" *ngIf="isLoading">
+    <div class="loading-spinner"></div>
+    <p>Cargando vista satelital...</p>
+  </div>
+</div>

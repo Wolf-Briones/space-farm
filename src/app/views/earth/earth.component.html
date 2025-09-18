@@ -1,0 +1,149 @@
+<!-- earth.component.html - GLOBO TERRÁQUEO ULTRA REALISTA -->
+<div class="earth-container">
+  <!-- Location Info Card -->
+  <div class="location-card" [class.visible]="showLocationCard">
+    <div class="location-icon">📍</div>
+    <div class="location-info">
+      <h3>{{ locationData.city }}, {{ locationData.country }}</h3>
+      <p>{{ locationData.coordinates }}</p>
+    </div>
+    <div class="earth-stats">
+      <div class="stat-item">
+        <span class="stat-label">Vista:</span>
+        <span class="stat-value pulse">Satelital NASA</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">Resolución:</span>
+        <span class="stat-value">Ultra HD 4K</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">Tiempo real:</span>
+        <span class="stat-value">{{ getCurrentTime() }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loading Spinner -->
+  <div class="loading-spinner" *ngIf="isLoading">
+    <div class="spinner-container">
+      <div class="earth-spinner">🌍</div>
+      <div class="orbit-ring"></div>
+      <div class="satellite">🛰️</div>
+    </div>
+    <div class="loading-text">
+      <p>Conectando con satélites NASA...</p>
+      <div class="loading-progress">
+        <div class="progress-bar"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3D Earth Canvas -->
+  <canvas #earthCanvas class="earth-canvas"></canvas>
+
+  <!-- Space HUD Controls -->
+  <div class="space-hud" [class.visible]="showLocationCard">
+    <div class="hud-panel">
+      <h4>🚀 Control Espacial</h4>
+      <div class="hud-controls">
+        <div class="control-item">
+          <span class="control-label">Órbita:</span>
+          <span class="control-value animated-text">Estable</span>
+        </div>
+        <div class="control-item">
+          <span class="control-label">Velocidad:</span>
+          <span class="control-value animated-text">1.674 km/h</span>
+        </div>
+        <div class="control-item">
+          <span class="control-label">Altitud:</span>
+          <span class="control-value animated-text">408 km</span>
+        </div>
+        <div class="control-item">
+          <span class="control-label">Señal:</span>
+          <span class="control-value signal-strength">●●●●●</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="mission-info">
+      <h4>🌌 Misión SpaceFarm</h4>
+      <p>Preparando análisis agrícola desde el espacio</p>
+      <div class="mission-status">
+        <div class="status-dot"></div>
+        <span>Sistema operativo</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Start Button -->
+  <div class="start-panel" [class.visible]="showStartButton">
+    <div class="start-description">
+      <h3>🌍 Tierra Vista desde el Espacio</h3>
+      <p>Tu granja inteligente te espera en <strong>{{ locationData.city }}</strong></p>
+      <div class="tech-specs">
+        <span>📡 Imágenes satelitales en tiempo real</span>
+        <span>🛰️ Monitoreo agrícola avanzado</span>
+        <span>🌱 Análisis de cultivos con IA</span>
+      </div>
+    </div>
+    
+    <button class="start-button" (click)="startSpaceFarm()">
+      <div class="button-glow"></div>
+      <div class="button-content">
+        <span class="button-icon">🚀</span>
+        <span class="button-text">Iniciar SpaceFarm</span>
+      </div>
+      <div class="button-particles"></div>
+    </button>
+  </div>
+
+  <!-- Permission Request -->
+  <div class="permission-panel" *ngIf="showPermissionRequest">
+    <div class="permission-card">
+      <div class="space-animation">
+        <div class="floating-earth">🌍</div>
+        <div class="floating-satellite">🛰️</div>
+        <div class="floating-stars">✨</div>
+      </div>
+      
+      <h3>🌍 Acceso a Ubicación Satelital</h3>
+      <p>Para configurar tu estación espacial agrícola necesitamos conocer tu ubicación en la Tierra.</p>
+      
+      <div class="permission-features">
+        <div class="feature-item">
+          <span class="feature-icon">📡</span>
+          <span>Datos satelitales precisos</span>
+        </div>
+        <div class="feature-item">
+          <span class="feature-icon">🌤️</span>
+          <span>Monitoreo climático local</span>
+        </div>
+        <div class="feature-item">
+          <span class="feature-icon">🌱</span>
+          <span>Análisis de suelo específico</span>
+        </div>
+      </div>
+
+      <div class="permission-buttons">
+        <button class="allow-btn" (click)="requestLocation()">
+          <span class="btn-icon">🛰️</span>
+          Activar Localización
+        </button>
+        <button class="deny-btn" (click)="useDefaultLocation()">
+          <span class="btn-icon">🌍</span>
+          Usar Ubicación Demo
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cosmic Background Effects -->
+  <div class="cosmic-bg">
+    <div class="nebula nebula-1"></div>
+    <div class="nebula nebula-2"></div>
+    <div class="nebula nebula-3"></div>
+    <div class="shooting-stars">
+      <div class="shooting-star" *ngFor="let star of [1,2,3,4,5]"></div>
+    </div>
+  </div>
+</div>

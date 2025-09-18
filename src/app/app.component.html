@@ -1,2 +1,15 @@
-<!-- <router-outlet></router-outlet> -->
-<app-game></app-game>
+<!-- app.component.html -->
+<div class="app-container">
+  <!-- Vista inicial: Globo terráqueo -->
+  <app-earth 
+    *ngIf="!gameStarted" 
+    (startGame)="onStartGame($event)">
+  </app-earth>
+
+  <!-- Vista del juego principal -->
+  <app-game 
+    *ngIf="gameStarted" 
+    [userLocationData]="userLocationData">
+  </app-game>
+
+</div>
