@@ -1,0 +1,91 @@
+<div #leafletMapContainer style="width:256px; height:256px; position:absolute; left:-9999px; top:-9999px; z-index:-1;"></div>
+
+<div #rendererContainer class="renderer-container"></div>
+
+<div class="info-panel">
+  <h3>🌍 Tierra NASA - Simulación Astronómica</h3>
+  
+  <!-- Información de Tiempo -->
+  <div class="time-section">
+    <div class="data-point">
+      <span>📅 Fecha:</span>
+      <span>{{ getCurrentDate() }}</span>
+    </div>
+    <div class="data-point">
+      <span>⏰ Hora Local:</span>
+      <span>{{ getCurrentLocalTime() }}</span>
+    </div>
+    <div class="data-point">
+      <span>🌐 Modo:</span>
+      <span>{{ useRealTime ? 'Tiempo Real' : 'Manual' }}</span>
+    </div>
+  </div>
+
+  <!-- Información Solar -->
+  <div class="solar-section">
+    <div class="data-point">
+      <span>☀️ Elevación Solar:</span>
+      <span>{{ getSunPosition().elevation }}°</span>
+    </div>
+    <div class="data-point">
+      <span>🧭 Azimut Solar:</span>
+      <span>{{ getSunPosition().azimuth }}°</span>
+    </div>
+  </div>
+
+  <!-- Información Técnica -->
+  <div class="tech-section">
+    <div class="data-point">
+      <span>🔄 Rotación:</span>
+      <span>{{ useRealTime ? 'Sincronizada' : (manualRotationSpeed | number: '1.3-3') + ' rad/s' }}</span>
+    </div>
+    <div class="data-point">
+      <span>🔍 Zoom:</span>
+      <span>{{ (20 / cameraDistance) | number: '1.1-1' }}x</span>
+    </div>
+    <div class="data-point">
+      <span>🎯 Rotación Tierra:</span>
+      <span>{{ (earthRotation() * 180 / 3.14159) | number: '1.0-0' }}°</span>
+    </div>
+  </div>
+</div>
+
+<div class="controls">
+  <!-- Controles Principales -->
+  <div class="control-group">
+    <h4>⚙️ Controles Principales</h4>
+    <button (click)="toggleRotation()" [class.active]="isRotating">
+      {{ isRotating ? '⏸️ Pausar' : '▶️ Reanudar' }}
+    </button>
+    <button (click)="toggleRealTime()" [class.active]="useRealTime">
+      {{ useRealTime ? '📅 Modo Manual' : '⏰ Tiempo Real' }}
+    </button>
+    <button (click)="resetView()">🎯 Reset Vista</button>
+  </div>
+
+  <!-- Controles de Velocidad (solo en modo manual) -->
+  <div class="control-group" *ngIf="!useRealTime">
+    <h4>🚀 Velocidad Manual</h4>
+    <button (click)="changeRotationSpeed(0.0005)" [class.active]="manualRotationSpeed === 0.0005">
+      🐌 Muy Lento
+    </button>
+    <button (click)="changeRotationSpeed(0.002)" [class.active]="manualRotationSpeed === 0.002">
+      🚶 Lento
+    </button>
+    <button (click)="changeRotationSpeed(0.005)" [class.active]="manualRotationSpeed === 0.005">
+      🏃 Normal
+    </button>
+    <button (click)="changeRotationSpeed(0.01)" [class.active]="manualRotationSpeed === 0.01">
+      🚀 Rápido
+    </button>
+  </div>
+
+  <!-- Controles de Cámara -->
+  <div class="control-group" *ngIf="controls">
+    <h4>📷 Cámara</h4>
+    <button (click)="toggleAutoOrbit()">
+      {{ controls.autoRotate ? '🔄 Parar Órbita' : '🌍 Auto Órbita' }}
+    </button>
+    <button (click)="refreshTexture()">🔄 Actualizar Textura</button>
+  </div>
+</div>
